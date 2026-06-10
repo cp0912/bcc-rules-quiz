@@ -21,7 +21,7 @@
     --border: #DDD8CC;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { overflow-x: hidden; max-width: 100%; }
+  html, body { overflow-x: hidden; max-width: 100%; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body {
     font-family: 'Barlow', sans-serif;
     background: var(--navy);
@@ -125,7 +125,7 @@
     padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 8px;
     cursor: pointer; background: var(--white); text-align: left;
     transition: border-color 0.15s, background 0.15s;
-    font-family: 'Barlow', sans-serif; font-size: 14px; line-height: 1.45; color: var(--text); width: 100%;
+    font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 600; line-height: 1.45; color: #000000; width: 100%;
   }
   .opt:hover:not(:disabled) { border-color: var(--gold); background: #F5ECCC; }
   .opt:disabled { cursor: default; }
@@ -202,7 +202,13 @@
     .card-body { padding: 1rem 1rem 1rem; }
     .card-footer { padding: 0.6rem 1rem; }
     .q-text { font-size: 14px; }
-    .opt { font-size: 13px; padding: 8px 12px; }
+    .opt {
+      font-size: 14px; padding: 8px 12px;
+      font-weight: 700 !important;
+      color: #000000 !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
     .opt-letter { width: 22px; height: 22px; font-size: 11px; }
     .start-screen { padding: 1rem 1rem; }
     .score-screen { padding: 1rem 1rem; }
