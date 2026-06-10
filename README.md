@@ -1,2 +1,2 @@
 # bcc-rules-quiz
-Quiz regarding Beltway Cricket Club rules
+Beltway Cricket Club rules Quiz
