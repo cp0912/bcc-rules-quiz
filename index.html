@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCC Rules Knowledge Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B3E;
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --cream: #F7F4EE;
+    --green: #1A6B4A;
+    --green-light: #E4F2EC;
+    --red: #8B2020;
+    --red-light: #FAE8E8;
+    --white: #FFFFFF;
+    --text: #1A1A2E;
+    --muted: #5A5F7A;
+    --border: #DDD8CC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 3rem;
+  }
+
+  /* Header */
+  .site-header {
+    width: 100%;
+    background: var(--navy);
+    border-bottom: 3px solid var(--gold);
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .header-logo {
+    width: 48px; height: 48px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--navy);
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+  .header-text h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--white); letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .header-text p { font-size: 12px; color: var(--gold-light); margin-top: 1px; }
+
+  /* Card */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    width: 100%; max-width: 660px;
+    margin: 0 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+  }
+
+  /* Progress */
+  .progress-track {
+    height: 5px;
+    background: var(--border);
+  }
+  .progress-fill {
+    height: 5px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+
+  .card-body { padding: 2rem 2rem 1.75rem; }
+
+  /* Meta row */
+  .q-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+  .section-badge {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: #E8EBF5;
+    padding: 3px 10px; border-radius: 99px;
+  }
+  .q-counter { font-size: 12px; color: var(--muted); }
+
+  /* Question */
+  .q-text {
+    font-size: 17px; font-weight: 500; line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Options */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .opt {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--white);
+    text-align: left;
+    transition: border-color 0.15s, background 0.15s;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px; line-height: 1.45;
+    color: var(--text);
+    width: 100%;
+  }
+  .opt:hover:not(:disabled) {
+    border-color: var(--gold);
+    background: #FDFAF3;
+  }
+  .opt:disabled { cursor: default; }
+  .opt-letter {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    color: var(--muted);
+    transition: background 0.15s, color 0.15s;
+    margin-top: 1px;
+  }
+  .opt.correct { border-color: var(--green); background: var(--green-light); }
+  .opt.correct .opt-letter { background: var(--green); color: white; }
+  .opt.wrong { border-color: var(--red); background: var(--red-light); }
+  .opt.wrong .opt-letter { background: var(--red); color: white; }
+
+  /* Feedback */
+  .feedback {
+    margin-top: 1.25rem;
+    padding: 13px 15px;
+    border-radius: 8px;
+    font-size: 13px; line-height: 1.6;
+    display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct { background: var(--green-light); border: 1px solid #9ECFB8; color: #0D4A30; }
+  .feedback.wrong   { background: var(--red-light);   border: 1px solid #DCAAA9; color: #5A1212; }
+  .feedback strong  { display: block; margin-bottom: 4px; font-size: 14px; }
+
+  /* Divider */
+  .card-footer {
+    border-top: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex; justify-content: flex-end;
+  }
+  .btn-next {
+    display: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--navy);
+    color: var(--gold-light);
+    border: none; border-radius: 7px;
+    padding: 11px 28px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-next:hover { background: #1a2f66; }
+  .btn-next.show { display: block; }
+
+  /* Score screen */
+  .score-screen { padding: 2.5rem 2rem 2rem; text-align: center; }
+  .score-dial {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    border: 4px solid var(--gold);
+  }
+  .score-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 38px; font-weight: 700;
+    color: var(--gold-light); line-height: 1;
+  }
+  .score-denom { font-size: 12px; color: #8899BB; margin-top: 2px; }
+  .score-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px; font-weight: 700;
+    color: var(--text); text-transform: uppercase;
+    letter-spacing: 0.04em; margin-bottom: 0.4rem;
+  }
+  .score-msg { font-size: 14px; color: var(--muted); margin-bottom: 2rem; }
+
+  /* Review */
+  .review-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--text); text-align: left;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .review-item {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 15px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  .review-item .q-meta { margin-bottom: 5px; }
+  .review-q { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.45; }
+  .review-ans { font-size: 12px; line-height: 1.6; }
+  .review-ans .wrong-line { color: var(--red); }
+  .review-ans .right-line { color: var(--green); font-weight: 500; }
+  .review-ans .explain-line { color: var(--muted); margin-top: 4px; }
+
+  .btn-retry {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--navy); color: var(--gold-light);
+    border: none; border-radius: 7px;
+    padding: 11px 32px; cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background 0.15s;
+  }
+  .btn-retry:hover { background: #1a2f66; }
+
+  @media (max-width: 500px) {
+    .card-body { padding: 1.5rem 1.25rem 1.25rem; }
+    .card-footer { padding: 0.9rem 1.25rem; }
+    .q-text { font-size: 15px; }
+    .site-header { padding: 1rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-logo">BCC</div>
+  <div class="header-text">
+    <h1>Beltway Cricket Community</h1>
+    <p>Rules Knowledge Quiz — Ver 2.0 (Jan 2026)</p>
+  </div>
+</header>
+
+<div class="card">
+  <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+  <div id="quiz-root"></div>
+</div>
+
+<script>
+const Q = [
+  { s:'Wide Balls — Rule 6.3', q:'A striker attempts a switch hit. The ball passes outside the wide line mark on his original off side. What is the correct call?', opts:['Automatically called a wide, since the ball is outside the off-side wide line mark','Not a wide, because the batter changed stance',"The umpire's judgment call whether it is a wide",'Called a no ball for dangerous bowling'], ans:2, ex:"Rule 6.3: For a switch hit, wide ball is judged based on both wide line marks. If the ball goes outside the original off-side wide line mark, it is the umpire's judgment call." },
+  { s:'Wide Balls — Rule 6.3', q:"A striker attempts a switch hit. The ball goes outside his original leg stump but stays inside the wide line mark on his original leg side. What is the call?", opts:["Wide, because the ball passed the batter's new leg stump","Not a wide","Wide, because the batter moved","Dead ball, because a switch hit is not permitted"], ans:1, ex:'Rule 6.3: If the ball goes outside the original leg stump but is inside the wide line mark on the original leg side, it shall NOT be judged as a wide ball.' },
+  { s:'No Ball — Rule 7.1.3', q:'A bowler delivers the ball from behind the bowling crease (non-striker stump line). What is the correct call?', opts:['No ball — bowler must deliver from behind the popping crease only','No ball — the delivery must pass over the popping crease','Not a no ball — bowling from behind the bowling crease is permitted','Dead ball — the umpire must warn the bowler'], ans:2, ex:'Rule 7.1.3: Bowlers may bowl from behind the bowling crease (non-striker stump line). This is not a No Ball.' },
+  { s:'No Ball — Rule 7.2.1', q:'A batter steps outside the popping crease to hit a ball. The umpire believes the full toss would have been above waist height had the batter stayed at the crease. What should be called?', opts:['Not a no ball — the batter moved, so the height check does not apply','Wide ball, because the batter moved forward','No ball — the umpire approximates where it would have passed if the batter stood at the crease, and no balls cannot be denied because the batter stepped out','Dead ball — the batter should not have left the crease'], ans:2, ex:'Rule 7.2.1: The leg umpire should approximate where the ball would have passed had the batter been at the popping crease. No balls cannot be denied simply because a batsman stepped outside the crease.' },
+  { s:'No Ball — Rule 7.2.2', q:"In the same over, a bowler has already received an official warning for a bouncer between the striker's shoulder and the top of the head. He bowls a second such bouncer in the same over. What is the call?", opts:['Wide ball','No ball','Dead ball with another warning','Legal delivery — one bouncer per over is a guideline only'], ans:1, ex:'Rule 7.2.2: One bouncer between shoulder and top of head is allowed per over, but the umpire must give a warning. A second such bouncer in the same over after the warning is a No Ball.' },
+  { s:'No Ball — Rule 7.2.4', q:"A ball is bowled and passes above the striker's head height (standing upright at the popping crease) without bouncing. It is NOT the second bouncer of the over. What is the correct call?", opts:['No ball','Wide','Dead ball','Legal delivery — height only matters for full tosses'], ans:1, ex:'Rule 7.2.4: Any ball passing above head height should be called a Wide (not a No Ball), unless it is the second bouncer of the over (in which case it is a No Ball).' },
+  { s:'No Ball — Rule 7.2.5', q:"A ball passes above the striker's head height but the batter swings and makes contact. What is the call?", opts:['Wide — the ball was above head height regardless of bat contact','No ball — any ball above head height is a no ball','Not a wide — the batter hit the ball, so it is treated as a legal delivery (bouncer)','Dead ball — the ball was too dangerous'], ans:2, ex:'Rule 7.2.5: If the batsman hits such a ball, it is not called a wide — it will be considered a bouncer.' },
+  { s:'No Ball — Rule 7.2.6', q:"The leg umpire calls 'Wide' first, and moments later the main umpire calls 'No Ball' for the same delivery. What is the correct outcome?", opts:['Wide stands — the first call wins','Both Wide and No Ball are counted, adding to extras','No Ball overrides — the Wide call is revoked and No Ball is counted','Dead ball — conflicting calls cancel each other out'], ans:2, ex:'Rule 7.2.6: A call for No Ball will override a call for a Wide ball. Even if the No Ball call comes after the Wide call, the No Ball should be counted and the Wide call revoked.' },
+  { s:'No Ball — Rule 7.3.1', q:"During his delivery stride, a bowler accidentally breaks the non-striker's end stumps and then delivers the ball. What should be called?", opts:['Dead ball — the ball cannot be bowled once stumps are broken','No ball','Legal delivery — breaking stumps in the stride is a common occurrence','Wide ball — it is an irregular action'], ans:1, ex:"Rule 7.3.1: If a bowler breaks the non-striker's end stumps in the delivery stride and then delivers the ball, it should be called a No Ball." },
+  { s:'No Ball — Rule 7.3.4', q:'A fielder on the ground makes audible noise after the bowler starts his run-up. It is the first such occurrence in the match. What should happen?', opts:['No ball immediately — any fielder noise after run-up starts is a no ball','Warning to the entire team; a no ball is called only on a subsequent offence','Dead ball — play must be restarted','Penalty runs awarded to the batting team'], ans:1, ex:'Rule 7.3.4: The ball should be called a No Ball after 1 warning to the entire team. The first offence earns a warning; a No Ball follows if it happens again.' },
+  { s:'No Ball — Rule 7.3.5', q:'The fielding captain places 6 fielders on the leg side. The ball is bowled. What is the call?', opts:['Legal — there is no limit on leg-side fielders','No ball — more than 5 fielders on the leg side is not permitted','Wide — unusual field placement leads to a wide call','Dead ball — the umpire must first instruct the captain to rearrange the field'], ans:1, ex:'Rule 7.3.5: If more than 5 fielders are fielding on the leg side, the ball should be called a No Ball. There is no limit on fielders on the off side.' },
+  { s:'No Ball — Rule 7.3.7', q:'During a non-power play over, the fielding team has 6 fielders outside the inner circle at the time the ball is bowled. What is the call?', opts:['Legal — fielder restrictions only apply during power plays','No ball','Wide ball','Dead ball with a team warning'], ans:1, ex:'Rule 7.3.7: If more than 5 fielders are placed outside the inner circle during non-power play overs at the time a ball is bowled, the ball should be called a No Ball.' },
+  { s:'No Ball — Rule 7.3.8', q:'After the bowler commences his run-up, the wicketkeeper makes a significant lateral (sideways) movement before the ball reaches the striker. What should be called?', opts:['Legal — keepers are free to reposition at any time','Wide ball — the movement unsettles the batter','No ball','Dead ball — the over must be restarted'], ans:2, ex:'Rule 7.3.8: The wicketkeeper is not allowed to make significant lateral movement after the bowler starts his run-up. If the umpire determines this occurred, the delivery shall be declared a No Ball.' },
+  { s:'No Ball — Rule 7.3.13', q:'A bowler delivers the ball underarm along the ground. What is the call?', opts:['Legal — underarm bowling is permitted in BCC','Wide ball','Dead ball','No ball'], ans:3, ex:'Rule 7.3.13: Underarm bowling should be considered a No Ball.' },
+  { s:'Dead Ball — Rule 8.1.1', q:'A ball bounces twice before reaching the stumps. It is not a No Ball or a Wide. What should be called?', opts:['No ball — double-bounce balls are always no balls','Wide ball','Dead ball','Legal delivery — the batter may still hit it'], ans:2, ex:'Rule 8.1.1: A ball that bounces two or more times before reaching the stumps shall be considered a Dead Ball, unless it qualifies as a No Ball or a Wide.' },
+  { s:'Penalty Runs — Rule 9.2', q:"While attempting a run out, the fielder's throw hits a water bottle on the pitch and then strikes the stumps, with the batsman short of his crease. What is the correct decision?", opts:['Not out — the ball hitting the water bottle voids the dismissal','5 penalty runs to the batting team; batsman is not out','Run out — the batsman should be given out','Dead ball — a foreign object on the pitch cancels the play'], ans:2, ex:'Rule 9.2: If the ball hits a passive object first and then hits the stumps with the batsman short of his crease, the batsman should be given run out. The passive object does not protect the batsman.' },
+];
+
+let cur = 0, score = 0, answered = false, results = [];
+const LETTERS = ['A','B','C','D'];
+
+function pct() { return Math.round((cur / Q.length) * 100); }
+
+function render() {
+  document.getElementById('progress').style.width = pct() + '%';
+  const root = document.getElementById('quiz-root');
+  if (cur >= Q.length) { renderScore(root); return; }
+  const q = Q[cur];
+  root.innerHTML = `
+    <div class="card-body">
+      <div class="q-meta">
+        <span class="section-badge">${q.s}</span>
+        <span class="q-counter">${cur + 1} / ${Q.length}</span>
+      </div>
+      <p class="q-text">${q.q}</p>
+      <div class="options" id="opts">
+        ${q.opts.map((o,i) => `
+          <button class="opt" id="opt${i}" onclick="choose(${i})">
+            <span class="opt-letter">${LETTERS[i]}</span>
+            <span>${o}</span>
+          </button>`).join('')}
+      </div>
+      <div class="feedback" id="fb"></div>
+    </div>
+    <div class="card-footer">
+      <button class="btn-next" id="nxt" onclick="next()">
+        ${cur === Q.length - 1 ? 'See Results →' : 'Next Question →'}
+      </button>
+    </div>`;
+}
+
+function choose(i) {
+  if (answered) return;
+  answered = true;
+  const q = Q[cur];
+  const correct = i === q.ans;
+  if (correct) score++;
+  for (let j = 0; j < 4; j++) {
+    const b = document.getElementById('opt' + j);
+    b.disabled = true;
+    if (j === q.ans) b.classList.add('correct');
+    else if (j === i) b.classList.add('wrong');
+  }
+  const fb = document.getElementById('fb');
+  fb.className = 'feedback show ' + (correct ? 'correct' : 'wrong');
+  fb.innerHTML = `<strong>${correct ? '✅ Correct!' : '❌ Incorrect.'}</strong>${q.ex}`;
+  document.getElementById('nxt').classList.add('show');
+  results.push({ s: q.s, q: q.q, correct, your: q.opts[i], right: q.opts[q.ans], ex: q.ex });
+}
+
+function next() {
+  cur++; answered = false;
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderScore(root) {
+  document.getElementById('progress').style.width = '100%';
+  const p = Math.round((score / Q.length) * 100);
+  const msg = p === 100 ? 'Perfect — you know the rulebook cold!' :
+               p >= 75  ? 'Great work. Nearly there!' :
+               p >= 50  ? 'Decent effort. A quick re-read will sharpen things up.' :
+                          'Time to revisit the rulebook before the next match.';
+  const wrongs = results.filter(r => !r.correct);
+  const reviewHTML = wrongs.length === 0 ? '' : `
+    <div class="review-heading">Questions to revisit (${wrongs.length})</div>
+    ${wrongs.map(r => `
+      <div class="review-item">
+        <div class="q-meta"><span class="section-badge">${r.s}</span></div>
+        <div class="review-q">${r.q}</div>
+        <div class="review-ans">
+          <div class="wrong-line">✗ Your answer: ${r.your}</div>
+          <div class="right-line">✓ Correct: ${r.right}</div>
+          <div class="explain-line">${r.ex}</div>
+        </div>
+      </div>`).join('')}`;
+  root.innerHTML = `
+    <div class="score-screen">
+      <div class="score-dial">
+        <div class="score-num">${score}/${Q.length}</div>
+        <div class="score-denom">${p}%</div>
+      </div>
+      <div class="score-title">${p === 100 ? 'Full Marks!' : p >= 75 ? 'Well Played' : p >= 50 ? 'Good Effort' : 'Keep Studying'}</div>
+      <div class="score-msg">${msg}</div>
+      ${reviewHTML}
+      <button class="btn-retry" onclick="restart()">Retake Quiz</button>
+    </div>`;
+}
+
+function restart() {
+  cur = 0; score = 0; answered = false; results = [];
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+render();
+</script>
+</body>
+</html>
