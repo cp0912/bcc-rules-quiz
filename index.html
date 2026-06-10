@@ -21,6 +21,7 @@
     --border: #DDD8CC;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; max-width: 100%; }
   body {
     font-family: 'Barlow', sans-serif;
     background: var(--navy);
@@ -28,7 +29,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 0 3rem;
+    padding: 0 0 1.5rem;
   }
   /* Header */
   .site-header {
@@ -39,10 +40,10 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
-  .header-logo { width: 56px; height: 56px; flex-shrink: 0; }
-  .header-logo img { width: 56px; height: 56px; object-fit: contain; }
+  .header-logo { width: 48px; height: 48px; flex-shrink: 0; }
+  .header-logo img { width: 48px; height: 48px; object-fit: contain; }
   .header-text h1 {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 22px; font-weight: 700;
@@ -55,18 +56,18 @@
   .card {
     background: var(--white);
     border-radius: 12px;
-    width: 100%; max-width: 660px;
+    width: calc(100% - 2rem); max-width: 660px;
     margin: 0 1rem;
     overflow: hidden;
     box-shadow: 0 8px 40px rgba(0,0,0,0.35);
   }
   .progress-track { height: 5px; background: var(--border); }
   .progress-fill { height: 5px; background: var(--gold); transition: width 0.4s ease; }
-  .card-body { padding: 2rem 2rem 1.75rem; }
+  .card-body { padding: 1.25rem 1.5rem 1.25rem; }
   /* Start screen */
   .start-screen { padding: 2.5rem 2rem; text-align: center; }
   .start-icon { width: 80px; height: 80px; margin: 0 auto 1.25rem; }
-  .start-icon img { width: 80px; height: 80px; object-fit: contain; }
+  .start-icon img { width: 60px; height: 60px; object-fit: contain; }
   .start-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 26px; font-weight: 700; text-transform: uppercase;
@@ -78,7 +79,7 @@
     text-transform: uppercase; letter-spacing: 0.06em;
     margin-bottom: 0.6rem; display: block;
   }
-  .start-select-wrap { position: relative; display: inline-block; margin-bottom: 2rem; }
+  .start-select-wrap { position: relative; display: inline-block; margin-bottom: 1rem; }
   .start-select {
     appearance: none;
     background: var(--white);
@@ -98,7 +99,7 @@
     transform: translateY(-50%);
     pointer-events: none; color: #000000; font-size: 12px;
   }
-  .category-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 2rem; }
+  .category-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 1rem; }
   .cat-tag {
     font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
     text-transform: uppercase; padding: 4px 10px; border-radius: 99px;
@@ -118,7 +119,7 @@
   .q-counter { font-size: 12px; color: var(--muted); }
   .q-text { font-size: 17px; font-weight: 500; line-height: 1.55; color: var(--text); margin-bottom: 1.5rem; }
   /* Options */
-  .options { display: flex; flex-direction: column; gap: 10px; }
+  .options { display: flex; flex-direction: column; gap: 7px; }
   .opt {
     display: flex; align-items: flex-start; gap: 12px;
     padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 8px;
@@ -166,14 +167,14 @@
   }
   .btn-start-center:hover { background: #68b85a; }
   /* Score */
-  .score-screen { padding: 2.5rem 2rem 2rem; text-align: center; }
+  .score-screen { padding: 1.5rem 1.5rem 1.5rem; text-align: center; }
   .score-dial {
-    width: 110px; height: 110px; border-radius: 50%;
+    width: 90px; height: 90px; border-radius: 50%;
     background: var(--navy); border: 4px solid var(--gold);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     margin: 0 auto 1.5rem;
   }
-  .score-num { font-family: 'Barlow Condensed', sans-serif; font-size: 38px; font-weight: 700; color: #000000; line-height: 1; }
+  .score-num { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 700; color: #000000; line-height: 1; }
   .score-denom { font-size: 12px; color: #000000; margin-top: 2px; }
   .score-title { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.4rem; }
   .score-msg { font-size: 14px; color: var(--muted); margin-bottom: 2rem; }
@@ -192,11 +193,20 @@
   }
   .btn-retry:hover { background: #1a2f66; }
   @media (max-width: 500px) {
-    .card-body { padding: 1.5rem 1.25rem 1.25rem; }
-    .card-footer { padding: 0.9rem 1.25rem; }
-    .q-text { font-size: 15px; }
-    .site-header { padding: 1rem 1.25rem; }
-    .start-screen { padding: 2rem 1.25rem; }
+    .site-header { padding: 0.75rem 1rem; }
+    .header-logo { width: 36px; height: 36px; }
+    .header-logo img { width: 36px; height: 36px; }
+    .header-text h1 { font-size: 16px; }
+    .header-text p { font-size: 11px; }
+    .card { width: calc(100% - 1rem); margin: 0 0.5rem; }
+    .card-body { padding: 1rem 1rem 1rem; }
+    .card-footer { padding: 0.6rem 1rem; }
+    .q-text { font-size: 14px; }
+    .opt { font-size: 13px; padding: 8px 12px; }
+    .opt-letter { width: 22px; height: 22px; font-size: 11px; }
+    .start-screen { padding: 1rem 1rem; }
+    .score-screen { padding: 1rem 1rem; }
+    .btn-start-center { padding: 11px 28px; font-size: 14px; }
   }
 </style>
 </head>
