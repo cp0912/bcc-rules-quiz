@@ -71,7 +71,7 @@
     box-shadow: 0 8px 40px rgba(0,0,0,0.35);
     display: flex;
     flex-direction: column;
-    max-height: 88vh;
+    max-height: 86vh;
   }
   .progress-track { height: 5px; background: var(--border); }
   .progress-fill { height: 5px; background: var(--gold); transition: width 0.4s ease; }
@@ -152,14 +152,14 @@
   .opt.wrong { border-color: var(--red); background: var(--red-light); }
   .opt.wrong .opt-letter { background: var(--red); color: white; }
   .feedback {
-    margin-top: 0.6rem; padding: 9px 12px; border-radius: 8px;
-    font-size: 13px; line-height: 1.5; display: none;
-    max-height: 100px; overflow-y: auto;
+    margin-top: 0.5rem; padding: 7px 10px; border-radius: 8px;
+    font-size: 12px; line-height: 1.45; display: none;
+    max-height: 72px; overflow-y: auto;
   }
   .feedback.show { display: block; }
   .feedback.correct { background: var(--green-light); border: 1px solid #9ECFB8; color: #000000; }
   .feedback.wrong   { background: var(--red-light);   border: 1px solid #DCAAA9; color: #000000; }
-  .feedback strong  { display: block; margin-bottom: 4px; font-size: 15px; }
+  .feedback strong  { display: block; margin-bottom: 2px; font-size: 13px; }
   .card-footer { border-top: 1px solid var(--border); padding: 1rem 2rem; display: flex; justify-content: flex-end; flex-shrink: 0; }
   .btn-next, .btn-start {
     display: none;
@@ -214,7 +214,7 @@
     .card { width: calc(100% - 1rem); margin: 0 0.5rem; }
     .card-body { padding: 0.75rem 1rem 0.75rem; flex: 1; overflow-y: auto; }
     .card-footer { padding: 0.5rem 1rem; }
-    .q-text { font-size: 14px; }
+    .q-text { font-size: 13px; line-height: 1.4; margin-bottom: 0.5rem; }
     .opt {
       font-size: 15px; padding: 8px 12px;
       font-weight: 700 !important;
@@ -222,7 +222,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-    .opt-letter { width: 22px; height: 22px; font-size: 11px; }
+    .opt-letter { width: 20px; height: 20px; font-size: 10px; }
     .start-screen { padding: 1rem 1rem; }
     .score-screen { padding: 1rem 1rem; }
     .btn-start-center { padding: 11px 28px; font-size: 14px; }
