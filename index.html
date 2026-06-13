@@ -180,7 +180,7 @@
   }
   .btn-start-center:hover { background: #68b85a; }
   /* Score */
-  .score-screen { padding: 1.5rem 1.5rem 1.5rem; text-align: center; }
+  .score-screen { padding: 1.5rem 1.5rem 1.5rem; text-align: center; overflow-y: auto; }
   .score-dial {
     width: 90px; height: 90px; border-radius: 50%;
     background: var(--navy); border: 4px solid var(--gold);
@@ -193,6 +193,8 @@
   .score-msg { font-size: 14px; color: var(--muted); margin-bottom: 2rem; }
   .review-heading { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text); text-align: left; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); }
   .review-item { border: 1px solid var(--border); border-radius: 8px; padding: 13px 15px; margin-bottom: 10px; text-align: left; }
+  #quiz-root { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+  #quiz-root .card-body { flex: 1; overflow-y: auto; }
   .review-item .q-meta { margin-bottom: 5px; }
   .review-q { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.45; }
   .review-ans { font-size: 12px; line-height: 1.6; }
@@ -322,8 +324,10 @@
   body.theme-dark .progress-track { background: #333333; }
   body.theme-dark .card-footer { border-top-color: #333333; }
   body.theme-dark .review-item { border-color: #444444; background: #1a1a1a; }
-  body.theme-dark .review-ans .wrong-line { color: #FF6B6B; }
-  body.theme-dark .review-ans .right-line { color: #6BFF9E; }
+  body.theme-dark .review-ans .wrong-line { color: #FF6B6B !important; }
+  body.theme-dark .review-ans .right-line { color: #6BFF9E !important; }
+  body.theme-dark .review-ans .explain-line { color: #CCCCCC !important; }
+  body.theme-dark .review-q { color: #FFFFFF !important; }
   body.theme-dark .score-dial { background: #111111; border-color: var(--gold); }
   body.theme-dark .start-select { background: #1a1a1a; color: #FFFFFF; border-color: #444444; }
   body.theme-dark .btn-start-center,
@@ -622,6 +626,7 @@ function renderScore(root) {
         </div>
       </div>`).join('')}`;
   root.innerHTML = `
+    <div class="card-body">
     <div class="score-screen">
       <div class="score-dial">
         <div class="score-num">${score}/${Q.length}</div>
@@ -631,6 +636,7 @@ function renderScore(root) {
       <div class="score-msg">${msg}</div>
       ${reviewHTML}
       <button class="btn-retry" onclick="restart()">Try Again</button>
+    </div>
     </div>`;
 }
 
