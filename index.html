@@ -225,6 +225,65 @@
     .btn-start-center { padding: 11px 28px; font-size: 14px; }
   }
 
+  /* ── Navy & Gold Theme ───────────────────────────────────── */
+  body.theme-navy {
+    --navy: #0D1B3E;
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --white: #0D1B3E;
+    --text: #F0D080;
+    --muted: #C9A84C;
+    --border: #2A3F6F;
+  }
+  body.theme-navy .site-header { background: #070E21; border-bottom-color: var(--gold); }
+  body.theme-navy .header-text h1 { color: #F0D080; }
+  body.theme-navy .header-text p a { color: #C9A84C; }
+  body.theme-navy .header-text p a:hover { color: #F0D080; }
+  body.theme-navy .card { background: #0D1B3E; box-shadow: 0 8px 40px rgba(0,0,0,0.5); border: 0.5px solid #2A3F6F; }
+  body.theme-navy .progress-track { background: #1A2F5A; }
+  body.theme-navy .progress-fill { background: var(--gold); }
+  body.theme-navy .card-footer { border-top-color: #2A3F6F; }
+  body.theme-navy .q-text { color: #F0D080; }
+  body.theme-navy .q-counter { color: #C9A84C; }
+  body.theme-navy .opt { background: #132244; border-color: #2A3F6F; color: #F0D080; }
+  body.theme-navy .opt:hover:not(:disabled) { background: #1A2F5A; border-color: var(--gold); }
+  body.theme-navy .opt.correct { background: #0D2E1F; border-color: #4ADE80; color: #FFFFFF; }
+  body.theme-navy .opt.correct .opt-letter { background: #4ADE80; color: #000000; }
+  body.theme-navy .opt.wrong { background: #2E0D0D; border-color: #F87171; color: #FFFFFF; }
+  body.theme-navy .opt.wrong .opt-letter { background: #F87171; color: #000000; }
+  body.theme-navy .opt-letter { background: #1A2F5A; color: #F0D080; }
+  body.theme-navy .feedback.correct { background: #0D2E1F; border-color: #4ADE80; color: #FFFFFF; }
+  body.theme-navy .feedback.wrong { background: #2E0D0D; border-color: #F87171; color: #FFFFFF; }
+  body.theme-navy .section-badge { background: var(--gold); color: #0D1B3E; }
+  body.theme-navy .start-screen { color: #F0D080; }
+  body.theme-navy .start-title { color: #F0D080; }
+  body.theme-navy .start-subtitle { color: #C9A84C; }
+  body.theme-navy .start-label { color: #C9A84C; }
+  body.theme-navy .start-select { background: #132244; color: #F0D080; border-color: #2A3F6F; }
+  body.theme-navy .start-select-arrow { color: #C9A84C; }
+  body.theme-navy .cat-tag { background: #132244; color: #C9A84C; border-color: #2A3F6F; }
+  body.theme-navy .cat-tag:hover { background: #1A2F5A; }
+  body.theme-navy .cat-tag.active { background: var(--gold); color: #0D1B3E; border-color: var(--gold); }
+  body.theme-navy .btn-start-center,
+  body.theme-navy .btn-next,
+  body.theme-navy .btn-start,
+  body.theme-navy .btn-retry { background: var(--gold); color: #0D1B3E; }
+  body.theme-navy .btn-start-center:hover,
+  body.theme-navy .btn-next:hover,
+  body.theme-navy .btn-start:hover,
+  body.theme-navy .btn-retry:hover { background: var(--gold-light); }
+  body.theme-navy .score-dial { background: #070E21; border-color: var(--gold); }
+  body.theme-navy .score-num { color: #F0D080; }
+  body.theme-navy .score-denom { color: #C9A84C; }
+  body.theme-navy .score-title { color: #F0D080; }
+  body.theme-navy .score-msg { color: #C9A84C; }
+  body.theme-navy .review-item { border-color: #2A3F6F; background: #132244; }
+  body.theme-navy .review-q { color: #F0D080; }
+  body.theme-navy .review-ans .wrong-line { color: #F87171; }
+  body.theme-navy .review-ans .right-line { color: #4ADE80; }
+  body.theme-navy .review-ans .explain-line { color: #C9A84C; }
+  body.theme-navy .review-heading { color: #F0D080; border-bottom-color: #2A3F6F; }
+
   /* ── Dark Mode Theme ─────────────────────────────────────── */
   body.theme-dark {
     --navy: #000000;
@@ -310,8 +369,9 @@ siteLink.href = QUIZ_CONFIG.linkUrl;
 
 // ── Theme management ─────────────────────────────────────────
 function applyTheme(theme, save) {
-  document.body.classList.remove('theme-dark', 'theme-cricket');
+  document.body.classList.remove('theme-dark', 'theme-cricket', 'theme-navy');
   if (theme === 'dark') document.body.classList.add('theme-dark');
+  if (theme === 'navy') document.body.classList.add('theme-navy');
   if (save) localStorage.setItem('bcc-quiz-theme', theme);
   // Sync dropdown if it exists
   const sel = document.getElementById('theme-select');
@@ -448,6 +508,7 @@ function renderStart() {
         <select class="start-select" id="theme-select" onchange="applyTheme(this.value, true)">
           <option value="cricket">🏏 Cricket Ground</option>
           <option value="dark">🌙 Dark Mode</option>
+          <option value="navy">⚓ Navy &amp; Gold</option>
         </select>
         <span class="start-select-arrow">▼</span>
       </div>
@@ -456,7 +517,8 @@ function renderStart() {
         <select class="start-select" id="q-count" onchange="onDropdownChange(this)">
           <option value="5">5 Questions</option>
           <option value="10">10 Questions</option>
-          <option value="16" selected>All 16 Questions</option>
+          <option value="20">20 Questions</option>
+          <option value="31" selected>All 31 Questions</option>
         </select>
         <span class="start-select-arrow">▼</span>
       </div>
