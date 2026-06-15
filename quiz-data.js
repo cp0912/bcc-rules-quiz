@@ -17,23 +17,37 @@ const QUIZ_CONFIG = {
     {
       s: 'Wide Balls',
       q: 'On the off side, the ball lands exactly on the wide line mark. What is the umpire\'s call?',
-      opts: ['Always a wide — the ball is on the line', 'Never a wide — the ball must be fully outside the line', 'The umpire\'s judgment call; the line belongs to the umpire', 'Dead ball — the umpire must reset'],
+      opts: ['Always a wide — the ball is on the line', 'Not a wide — the ball must be fully outside the line to be called wide', 'The umpire\'s judgment call; the line belongs to the umpire', 'Dead ball — the umpire must reset'],
+      ans: 1,
+      ex: 'Rule 6.2: On the off side, if the ball is outside the wide line mark it should be called a wide. A ball on the line should NOT be called a wide ball.'
+    },
+    {
+      s: 'Wide Balls',
+      q: 'A batsman moves towards the off side during a delivery. How does this affect the wide line?',
+      opts: ['The wide line stays fixed regardless of batsman movement', 'The wide line moves further away from the stumps (in the direction the batsman moved)', 'The wide line moves closer to the stumps', 'The umpire resets the wide line after every ball'],
+      ans: 1,
+      ex: 'Rule 6.3: The wide line moves with the batsman and can only move away from the stumps. If the batsman moves to the off side, the wide line moves further away. If the batsman moves to the leg side, the wide line stays where it is.'
+    },
+    {
+      s: 'Wide Balls',
+      q: 'A batsman moves to the leg side. What happens to the wide line?',
+      opts: ['The wide line moves closer to the stumps', 'The wide line moves further away from the stumps', 'The wide line stays where it is', 'The delivery is automatically called a wide'],
       ans: 2,
-      ex: 'Rule 6.2: On the off side, if the ball is outside the wide line mark it should be called a wide. The line belongs to the umpire and so it can be called wide. COC suggests umpires and both captains discuss this before the game.'
+      ex: 'Rule 6.3: The wide line can only move away from the stumps. If the batsman moves to the leg side, the wide line stays where it is — it does not follow the batsman towards the stumps.'
     },
     {
       s: 'Wide Balls',
       q: 'A striker attempts a switch hit. The ball goes outside his original leg stump but stays inside the wide line mark on his original leg side. What is the call?',
       opts: ['Wide — the ball passed the batter\'s new leg stump', 'Not a wide', 'Wide — because the batter moved', 'Dead ball — switch hit is not permitted'],
       ans: 1,
-      ex: 'Rule 6.3: For a switch hit, wide ball is judged based on the wide line marks on both sides. If the ball goes outside the original leg stump but is inside the wide line mark on the original leg side, it shall NOT be judged a wide.'
+      ex: 'Rule 6.4: For a switch hit, wide ball is judged based on the wide line marks on both sides and the batsman\'s movement. If the ball goes outside the original leg stump but is inside the wide line mark on the original leg side, it shall NOT be judged a wide.'
     },
     {
       s: 'Wide Balls',
-      q: 'A striker attempts a switch hit and moves towards the off side. The ball goes outside his original off-side wide line mark. What is the correct call?',
-      opts: ['Automatically a wide', 'Not a wide — batter moved so wide line moves with him', 'The umpire\'s judgment call — wide if batter stayed put, not wide if batter moved towards off side', 'No ball'],
+      q: 'A striker attempts a switch hit and moves towards the wide line. The ball goes outside his original off-side wide line mark. What is the correct call?',
+      opts: ['Automatically a wide', 'Not a wide — batter moved so wide line moves with him', 'The umpire\'s judgment call — wide if batter stayed put, not wide if batter moved towards the wide line', 'No ball'],
       ans: 2,
-      ex: 'Rule 6.3: If the ball goes outside the original off-side wide line mark, it is the umpire\'s judgment call — called wide if the batsman stayed in the same place, but if the batsman moved towards the off side, the wide line also moves.'
+      ex: 'Rule 6.4: If the ball goes outside the original off-side wide line mark, it is the umpire\'s judgment call — called wide if the batsman stayed in the same place, but if the batsman moved towards the wide line, the wide line also moves.'
     },
 
     // ── NO BALL — Front Foot (Rule 7.1) ─────────────────────
@@ -174,80 +188,90 @@ const QUIZ_CONFIG = {
       ex: 'Rule 7 (NOTE): Stumping is not allowed on a No Ball unless the batsman attempts to run and is run out. Stumping (wicketkeeper collecting directly from the bowler) is not a valid dismissal on a No Ball.'
     },
 
-    // ── PENALTY RUNS (Rule 8) ────────────────────────────────
+    // ── DEAD BALL (Rule 8) ──────────────────────────────────
+
+    {
+      s: 'Dead Ball',
+      q: 'When does the ball become dead according to BCC rules?',
+      opts: ['When the ball reaches the wicketkeeper', 'When the batsman leaves the crease', 'Once the umpire signals the end of the over', 'When the bowler starts his run-up for the next delivery'],
+      ans: 2,
+      ex: 'Rule 8.1: The ball becomes dead once the umpire signals the end of the over.'
+    },
+
+    // ── PENALTY RUNS (Rule 9) ────────────────────────────────
 
     {
       s: 'Penalty Runs',
       q: 'A ball in play hits a water bottle that was left near the stumps. What is the correct ruling?',
       opts: ['5 penalty runs to the batting team', 'Dead ball — replay the delivery', 'No penalty — passive objects already on the field do not attract 5-run penalties', 'Wide ball'],
       ans: 2,
-      ex: 'Rule 8.1: There is NO 5-run penalty if the ball while still in play hits any passive object already present on the field (water bottle, cone, flags, clothing etc.). However, the umpire should ensure such objects are removed or kept where the ball rarely goes.'
+      ex: 'Rule 10.1: There is NO 5-run penalty if the ball while still in play hits any passive object already present on the field (water bottle, cone, flags, clothing etc.). However, the umpire should ensure such objects are removed or kept where the ball rarely goes.'
     },
     {
       s: 'Penalty Runs',
       q: 'A fielder intentionally uses a cap (not on his head) to obstruct the ball. What is the ruling?',
       opts: ['No penalty — only the stumps can obstruct the ball', 'Dead ball with a warning', '5 penalty runs awarded to the batting team as byes', 'Wide ball'],
       ans: 2,
-      ex: 'Rule 8.2: Intentionally obstructing the ball with a foreign object (e.g. cap, hat, glove not on the hand) by the fielding side results in 5 penalty runs awarded to the batting team as byes.'
+      ex: 'Rule 10.2: Intentionally obstructing the ball with a foreign object (e.g. cap, hat, glove not on the hand) by the fielding side results in 5 penalty runs awarded to the batting team as byes.'
     },
     {
       s: 'Penalty Runs',
       q: 'While attempting a run out, the fielder\'s throw hits a water bottle on the pitch and then strikes the stumps. The batsman is short of his crease. What is the correct decision?',
       opts: ['Not out — the ball hit a passive object first', '5 penalty runs; batsman is not out', 'Run out — the batsman should be given out', 'Dead ball — foreign object on pitch cancels the play'],
       ans: 2,
-      ex: 'Rule 8.2: While attempting a run out, if the ball hits a passive object first and then hits the stumps with the batsman short of his crease, the batsman should be given run out. The passive object does not protect the batsman.'
+      ex: 'Rule 10.2: While attempting a run out, if the ball hits a passive object first and then hits the stumps with the batsman short of his crease, the batsman should be given run out. The passive object does not protect the batsman.'
     },
     {
       s: 'Penalty Runs',
       q: 'Spring stumps are in use. The ball hits only the base of the spring stumps but does not hit the actual stumps or bails. The bails come off due to the impact. Is the batsman out?',
       opts: ['Out — the bails came off', 'Not out — the ball must hit the stumps or bails directly, not just the base', 'Out — umpire\'s discretion', 'Dead ball — spring stumps are invalid for dismissals'],
       ans: 1,
-      ex: 'Rule 8.3.2: If the ball hits only the base but does not hit the stumps/bails, the batsman should not be given out even if the bails come off or stumps move. Umpire\'s call is final in determining whether the ball hit just the base or the stumps/bails.'
+      ex: 'Rule 9.3.2: If the ball hits only the base but does not hit the stumps/bails, the batsman should not be given out even if the bails come off or stumps move. Umpire\'s call is final in determining whether the ball hit just the base or the stumps/bails.'
     },
     {
       s: 'Penalty Runs',
       q: 'Spring stumps are in use. The ball first hits the base and then hits the stumps/bails, with the batsman outside the crease. What is the decision?',
       opts: ['Not out — the ball hit the base first', 'Out — the batsman should be declared out since the ball hit the stumps/bails', 'Dead ball — replay the delivery', '5 penalty runs to the batting team'],
       ans: 1,
-      ex: 'Rule 8.3.1: If the ball first hits the base and then stumps/bails, the batsman should be declared out if the batsman was outside the crease at the time the ball hits the stumps/bails.'
+      ex: 'Rule 9.3.1: If the ball first hits the base and then stumps/bails, the batsman should be declared out if the batsman was outside the crease at the time the ball hits the stumps/bails.'
     },
 
-    // ── MANKADING (Rule 9) ───────────────────────────────────
+    // ── MANKADING (Rule 10) ──────────────────────────────────
 
     {
       s: 'Mankading',
       q: 'A non-striker leaves the crease before the bowler reaches the highest point of his action. The bowler attempts a Mankad run out and succeeds. Does the delivery count as one in the over?',
       opts: ['No — Mankad dismissals do not count as a ball bowled', 'Yes — the ball shall count as one in the over', 'No — the delivery is replayed', 'Only if a warning was given first'],
       ans: 1,
-      ex: 'Rule 9.1: If the non-striker is out of his/her ground from the moment the ball comes into play to the instant when the bowler would normally have been expected to release the ball, and the attempt is successful, then the ball shall count as one in the over.'
+      ex: 'Rule 10.1: If the non-striker is out of his/her ground from the moment the ball comes into play to the instant when the bowler would normally have been expected to release the ball, and the attempt is successful, then the ball shall count as one in the over.'
     },
     {
       s: 'Mankading',
       q: 'The non-striker is backing up early. The bowler wants to Mankad the non-striker. What must happen before the non-striker can be given out?',
       opts: ['The bowler can run out the non-striker immediately with no warning required', 'One warning must be given to the non-striker before the dismissal', 'Two warnings must be given before the dismissal', 'The umpire must notify the batting captain first'],
       ans: 1,
-      ex: 'Rule 9.2: Before giving out, one warning needs to be given to the non-striker.'
+      ex: 'Rule 10.2: Before giving out, one warning needs to be given to the non-striker.'
     },
     {
       s: 'Mankading',
       q: 'A bowler attempts to Mankad the non-striker after the action has passed the highest point of the bowling action. What should the umpire do?',
       opts: ['Allow the run out — it is valid at any point before ball delivery', 'Give a warning to the team captain and call dead ball', 'Call a No Ball', 'Call a Wide ball'],
       ans: 1,
-      ex: 'Rule 9.2.4: If a bowler tries to Mankad after reaching the highest point of the action, the umpire shall give a warning to the fielding team captain and call it a dead ball.'
+      ex: 'Rule 10.2.4: If a bowler tries to Mankad after reaching the highest point of the action, the umpire shall give a warning to the fielding team captain and call it a dead ball.'
     },
     {
       s: 'Mankading',
       q: 'A bowler has already been warned for attempting a Mankad after the highest point. The same bowler does it again in the same innings. What is the call?',
       opts: ['Another warning only', 'No ball', 'Dead ball', 'The bowler is banned from bowling for the rest of the innings'],
       ans: 1,
-      ex: 'Rule 9.2.5: If this happens again after being warned (by the same or a different bowler), the umpire should call it a No Ball for each subsequent incident.'
+      ex: 'Rule 10.2.5: If this happens again after being warned (by the same or a different bowler), the umpire should call it a No Ball for each subsequent incident.'
     },
     {
       s: 'Mankading',
       q: 'A bowler fakes his bowling action to prevent his hand from reaching the highest point, then attempts a Mankad run out. Is the dismissal valid?',
       opts: ['Yes — the non-striker was still out of the crease', 'No — the bowler is not allowed to fake action to avoid the highest point, and the run out attempt is invalid', 'Yes — the umpire only judges whether the non-striker was out of the crease', 'Only valid if a warning was previously given'],
       ans: 1,
-      ex: 'Rule 9.2.3: The bowler is not allowed to fake action to avoid letting his hand reach the highest point. If he does so, he will not be allowed to get the Mankad run out.'
+      ex: 'Rule 10.2.3: The bowler is not allowed to fake action to avoid letting his hand reach the highest point. If he does so, he will not be allowed to get the Mankad run out.'
     }
 
   ]
