@@ -193,7 +193,7 @@ const QUIZ_CONFIG = {
     {
       s: 'Dead Ball',
       q: 'The umpire calls an end of the over when the fielder fields the ball. The fielder then throws and it results in an overthrow. The batsmen run. What is likely to happen?',
-      opts: ['The runs will be counted towards the batsman's score.', 'The runs will be counted as extras.', 'No runs will be counted, as the ball becomes dead once the umpire signals the end of the over.', 'The runs will be counted in the next over's first ball.'],
+      opts: ['The runs will be counted towards the batsman\'s score.', 'The runs will be counted as extras.', 'No runs will be counted, as the ball becomes dead once the umpire signals the end of the over.', 'The runs will be counted in the next over\'s first ball.'],
       ans: 2,
       ex: 'Rule 8.1: The ball becomes dead once the umpire signals the end of the over. Any runs taken after the umpire signals the end of the over will not count.'
     },
