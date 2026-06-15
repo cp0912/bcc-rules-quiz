@@ -255,7 +255,7 @@ const QUIZ_CONFIG = {
     {
       s: 'Mankading',
       q: 'A bowler attempts to Mankad the non-striker after the action has passed the highest point of the bowling action. What should the umpire do?',
-      opts: ['Allow the run out — it is valid at any point before ball delivery', 'Give a warning to the team captain and call dead ball', 'Call a No Ball', 'Call a Wide ball'],
+      opts: ['Allow the run out — it is valid at any point before ball delivery', 'Give a warning to the fielding team captain and call dead ball', 'Call a No Ball', 'Call a Wide ball'],
       ans: 1,
       ex: 'Rule 10.2.4: If a bowler tries to Mankad after reaching the highest point of the action, the umpire shall give a warning to the fielding team captain and call it a dead ball.'
     },
