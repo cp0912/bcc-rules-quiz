@@ -109,7 +109,7 @@ const QUIZ_CONFIG = {
     },
     {
       s: 'No Ball',
-      q: 'A ball passes above the striker\'s head height (standing upright at the popping crease) without bouncing. It is NOT the second bouncer of the over. What is the correct call?',
+      q: 'A beamer is bowled and passes above the striker\'s head height (standing upright at the popping crease). No previous bouncer has been bowled in this over. What is the correct call?',
       opts: ['No ball', 'Wide', 'Dead ball', 'Legal delivery'],
       ans: 1,
       ex: 'Rule 7.3.4: Any ball passing above head height should be called a Wide (not a No Ball), unless it is the second bouncer of the over (in which case it is a No Ball).'
