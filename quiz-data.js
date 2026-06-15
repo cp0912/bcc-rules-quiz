@@ -38,14 +38,14 @@ const QUIZ_CONFIG = {
     {
       s: 'Wide Balls',
       q: 'A striker attempts a switch hit. The ball goes outside his original leg stump but stays inside the wide line mark on his original leg side. What is the call?',
-      opts: ['Wide — the ball passed the batter\'s new leg stump', 'Not a wide', 'Wide — because the batter moved', 'Dead ball — switch hit is not permitted'],
+      opts: ['Wide — the ball passed the batsman\'s new leg stump', 'Not a wide', 'Wide — because the batsman moved', 'Dead ball — switch hit is not permitted'],
       ans: 1,
       ex: 'Rule 6.4: For a switch hit, wide ball is judged based on the wide line marks on both sides and the batsman\'s movement. If the ball goes outside the original leg stump but is inside the wide line mark on the original leg side, it shall NOT be judged a wide.'
     },
     {
       s: 'Wide Balls',
       q: 'A striker attempts a switch hit and moves towards the wide line. The ball goes outside his original off-side wide line mark. What is the correct call?',
-      opts: ['Automatically a wide', 'Not a wide — batter moved so wide line moves with him', 'The umpire\'s judgment call — wide if batter stayed put, not wide if batter moved towards the wide line', 'No ball'],
+      opts: ['Automatically a wide', 'Not a wide — batsman moved so wide line moves with him', 'The umpire\'s judgment call — wide if batsman stayed put, not wide if batsman moved towards the wide line', 'No ball'],
       ans: 2,
       ex: 'Rule 6.4: If the ball goes outside the original off-side wide line mark, it is the umpire\'s judgment call — called wide if the batsman stayed in the same place, but if the batsman moved towards the wide line, the wide line also moves.'
     },
@@ -88,10 +88,10 @@ const QUIZ_CONFIG = {
 
     {
       s: 'No Ball',
-      q: 'A batter steps outside the popping crease to hit a full toss. The umpire believes the ball would have been above waist height had the batter stayed at the crease. What should be called?',
-      opts: ['Not a no ball — the batter moved', 'Wide ball', 'No ball — the umpire approximates the height at the crease; no balls cannot be denied because the batter stepped out', 'Dead ball'],
+      q: 'A batsman steps outside the popping crease to hit a full toss. The umpire believes the ball would have been above waist height had the batsman stayed at the crease. What should be called?',
+      opts: ['Not a no ball — the batsman moved', 'Wide ball', 'No ball — the umpire approximates the height at the crease; no balls cannot be denied because the batsman stepped out', 'Dead ball'],
       ans: 2,
-      ex: 'Rule 7.3.1: If a batter steps outside the crease, the leg umpire should approximate where the ball would have passed had the batter been at the popping crease. No balls cannot be denied simply because a batsman stepped outside the crease.'
+      ex: 'Rule 7.3.1: If a batsman steps outside the crease, the leg umpire should approximate where the ball would have passed had the batsman been at the popping crease. No balls cannot be denied simply because a batsman stepped outside the crease.'
     },
     {
       s: 'No Ball',
@@ -116,8 +116,8 @@ const QUIZ_CONFIG = {
     },
     {
       s: 'No Ball',
-      q: 'A ball passes above the striker\'s head height but the batter swings and makes contact. What is the call?',
-      opts: ['Wide — the ball was above head height regardless', 'No ball', 'Not a wide — the batter hit it, so it is treated as a legal delivery (bouncer)', 'Dead ball'],
+      q: 'A ball passes above the striker\'s head height but the batsman swings and makes contact. What is the call?',
+      opts: ['Wide — the ball was above head height regardless', 'No ball', 'Not a wide — the batsman hit it, so it is treated as a legal delivery (bouncer)', 'Dead ball'],
       ans: 2,
       ex: 'Rule 7.3.5: If the batsman hits such a ball, it is not called a wide — it will be considered a bouncer.'
     },
@@ -192,10 +192,10 @@ const QUIZ_CONFIG = {
 
     {
       s: 'Dead Ball',
-      q: 'When does the ball become dead according to BCC rules?',
-      opts: ['When the ball reaches the wicketkeeper', 'When the batsman leaves the crease', 'Once the umpire signals the end of the over', 'When the bowler starts his run-up for the next delivery'],
+      q: 'The umpire calls an end of the over when the fielder fields the ball. The fielder then throws and it results in an overthrow. The batsmen run. What is likely to happen?',
+      opts: ['The runs will be counted towards the batsman's score.', 'The runs will be counted as extras.', 'No runs will be counted, as the ball becomes dead once the umpire signals the end of the over.', 'The runs will be counted in the next over's first ball.'],
       ans: 2,
-      ex: 'Rule 8.1: The ball becomes dead once the umpire signals the end of the over.'
+      ex: 'Rule 8.1: The ball becomes dead once the umpire signals the end of the over. Any runs taken after the umpire signals the end of the over will not count.'
     },
 
     // ── PENALTY RUNS (Rule 9) ────────────────────────────────
